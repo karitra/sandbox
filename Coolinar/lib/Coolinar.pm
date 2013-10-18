@@ -86,6 +86,9 @@ __PACKAGE__->config->{'Plugin::Cache'}{backend} = {
 #    debug   => 2,
 };
 
+__PACKAGE__->config->{REC_PER_PAGE} = 6;
+__PACKAGE__->config->{PAGES_IN_BAR} = 5;
+
 # Start the application
 __PACKAGE__->setup();
 

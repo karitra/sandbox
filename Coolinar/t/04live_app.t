@@ -67,10 +67,15 @@ $ua[1]->get_ok("http://localhost:$PORT/list");
 
 $ua[1]->get_ok("http://localhost:$PORT/list/10");
 
-my @dellinks = $ua[1]->find_all_links( text => 'Удалить');
-$ua[1]->get_ok( $dellinks[$#dellinks]->url, 'Delete last recipe on page');
+#my @dellinks = $ua[1]->find_all_links( text => 'Редактировать');
+#$ua[1]->get_ok( $dellinks[$#dellinks]->url, 'Delete last recipe on page');
+
+#
+# TODO: add recipe test
+#
 $ua[1]->content_contains('alt="Food image"');
-$ua[1]->content_like(qr//, "Deleted recipe #" );
+$ua[1]->submit_form( form_number => 1 );
+$ua[1]->content_like(qr/Рецепт № \d+ удален/, "Deleted recipe #" );
 
 
 done_testing;

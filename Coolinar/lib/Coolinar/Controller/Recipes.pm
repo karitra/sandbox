@@ -169,8 +169,8 @@ sub list :Path('/list') : Args(1) {
     $page_num = 0 if ! defined  $page_num;
 
     # TODO: move to app (user in reall app) config
-    my $per_page  = 8;
-    my $pg_in_bar = 6;
+    my $per_page  = $c->config->{REC_PER_PAGE}; # was 8
+    my $pg_in_bar = $c->config->{PAGES_IN_BAR}; # was 6
 
     $c->detach('/error_401') if $page_num < 0;
     #die "Error1: page_num is less then or equal to zero" if $page_num <= 0;
