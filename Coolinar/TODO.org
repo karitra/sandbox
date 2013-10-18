@@ -1,0 +1,11 @@
+ - [ ] Global error templates
+ - [ ] Image storage in database (with posting via form)
+ - [ ] Image in cache update support
+ - [ ] Plaesant recipe view with 'to print' button
+ - [ ] Change favicon.ico
+ - [ ] Admin part for adding/deleting users, viewing of statistics (separate app)
+ - [ ] Posting support with rating
+ - [ ] Ingredients list for recipe
+ - [ ] Make GUI sharp & cool
+ - [ ] More real life comprehensive tests
+ - [ ] Distributable application

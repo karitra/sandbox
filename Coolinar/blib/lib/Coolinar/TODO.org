@@ -1,0 +1,8 @@
+ - [ ] Global error templates
+ - [ ] Image storage in database (with posting via form)
+ - [ ] Image in cache update support
+ - [ ] Plaesant recipe view with 'to print' button
+ - [ ]  Change favicon.ico
+ - [ ]  Admin part for creatin deleting users, viewing of statistics (separate app)
+ - [ ]  Posting support with rating
+ - [ ]  Ingredients list for recipe

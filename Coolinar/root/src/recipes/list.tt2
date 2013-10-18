@@ -1,0 +1,34 @@
+[% INCLUDE toolbox.tt2 %]
+[% INCLUDE  navbar.tt2 %]
+
+<ul class="media-list">
+  [% FOREACH recipe IN recipes -%]
+  <!-- <a class="pull-left" href="#"><img src="#"></img></a> -->
+  <li class="media">
+    <a class="pull-left thumbnail" href="#">
+      <img class="media-object img-rounded" 
+	   src="[% c.uri_for( '/image', recipe.id ) %]" 
+	   width="64px"
+	   height="64px"
+	   alt="Food image">
+    </a>
+    <div class="media-body">
+	<h3 class="media-heading"><small>&#8470; [% recipe.id %]</small> [% recipe.name -%]</h3>
+	<p class="text-muted">[% recipe.desc | truncate(256) | html -%]<a href="#"> полный текст</a></p>
+
+	<form role="form" action="[% c.uri_for(c.controller.action_for('delete'), [ page_num, recipe.id ] ) -%]" method="POST">
+	<p>
+	  <a href="[% c.uri_for(c.controller.action_for('edit'), [page_num, recipe.id ] ) %]" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Редактировать...</a>
+	  <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-comment"></span> Оставить комментарий...</button>
+	  <button type="submit" class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
+	</p>
+	</form>
+    </div>
+  </li>
+<hr>
+  [% END -%]
+</ul>
+
+[% INCLUDE navbar.tt2 %]
+
+

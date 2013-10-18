@@ -1,0 +1,69 @@
+  [% 
+  chunk_number   = page_num / pg_in_bar | format('%d');
+  pg_bar_start   = chunk_number * pg_in_bar + 1;
+  pg_bar_end     = pg_bar_start + pg_in_bar - 1;
+  last_chunk_num = total_pages / pg_in_bar + 1 | format('%d');
+  IF last_chunk_num - 1 == chunk_number;
+    pg_bar_end = pg_bar_start + total_pages % pg_in_bar - 1;
+  END;
+  -%]
+
+<ul class="pagination pagination-sm pull-center">
+  [% IF chunk_number <= 0 -%]
+			<li class="disabled"><a href="#"><span class="glyphicon glyphicon-fast-backward"></span></a></li>
+  [% ELSE %]
+  <li>
+    <a href="[%-
+	     c.uri_for(c.controller.action_for('list'), 0 ) -%]">
+      <span class="glyphicon glyphicon-fast-backward"></span></a></li>
+  [% END %]
+
+  [% IF !page_num -%]
+  <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+  [% ELSE -%]
+  <li><a href="[%
+	       to_go = page_num - 1;
+	       c.uri_for(c.controller.action_for('list'), to_go)
+	       %]"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+  [% END -%]
+
+
+  [% FOREACH i IN [pg_bar_start .. pg_bar_end] %]
+  <li [% IF i == page_num + 1 -%]
+      class="active"
+      [% END -%]>
+    <a href="[%
+	     z = i - 1;
+	     c.uri_for(c.controller.action_for('list'), z) %]">[% i %]</a></li>
+  [% END %]
+
+  
+  [% IF page_num + 1 == total_pages %]
+    <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+  [% ELSE %]
+    <li><a href="[%
+		 to_go = page_num + 1;
+		 c.uri_for(c.controller.action_for('list'), to_go)
+		 %]"><span class="glyphicon glyphicon-chevron-right"></span></a></li>  
+  [% END  %]
+
+
+  [% IF chunk_number >= last_chunk_num - 1 %]
+    <li class="disabled"><a href="#"><span class="glyphicon glyphicon-fast-forward"></span></a></li>
+    [% ELSE %]
+    <li><a href="[%
+		 z = total_pages / pg_bar_end | format('%d');
+		 z = z * pg_bar_end + total_pages % pg_in_bar - 1;
+		 c.uri_for(c.controller.action_for('list'), z )
+		 %]"><span class="glyphicon glyphicon-fast-forward"></span></a></li>
+    [% END %]
+    <li>
+</ul>
+<!--
+<p>curr:  [% chunk_number %]</p>
+<p>last:  [% last_chunk_num   %]</p>
+<p>start: [% pg_bar_start %]</p>
+<p>end:   [% pg_bar_end   %]</p>
+<p>pg num:   [% page_num   %]</p>
+<p>last in bar:   [% pg_bar_start + total_pages % pg_in_bar - 1   %]</p>
+-->

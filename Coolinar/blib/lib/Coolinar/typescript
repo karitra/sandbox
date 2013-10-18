@@ -1,0 +1,1528 @@
+Script started on Tue 15 Oct 2013 08:53:23 PM MSK
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ ls[K[Kls script/
+[0m[01;32mcoolinar_cgi.pl[0m  [01;32mcoolinar_create.pl[0m  [01;32mcoolinar_fastcgi.pl[0m  [01;32mcoolinar_server.pl[0m  [01;32mcoolinar_test.pl[0m
+[m]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ ls script/[C[C[C[1Pscript/[1Pcript/[1Pscript/[C[C[C[C[C[C[Cc[Kcoolinar_create.pl --help
+Usage:
+    coolinar_create.pl [options] model|view|controller name [helper]
+    [options]
+
+     Options:
+       --force        don't create a .new file where a file to be created exists
+       --mechanize    use Test::WWW::Mechanize::Catalyst for tests if available
+       --help         display this help and exits
+
+     Examples:
+       coolinar_create.pl controller My::Controller
+       coolinar_create.pl --mechanize controller My::Controller
+       coolinar_create.pl view My::View
+       coolinar_create.pl view HTML TT
+       coolinar_create.pl model My::Model
+       coolinar_create.pl model SomeDB DBIC::Schema MyApp::Schema create=dynamic\
+       dbi:SQLite:/tmp/my.db
+       coolinar_create.pl model AnotherDB DBIC::Schema MyApp::Schema create=static\
+       [Loader opts like db_schema, naming] dbi:Pg:dbname=foo root 4321
+       [connect_info opts like quote_char, name_sep]
+
+     See also:
+       perldoc Catalyst::Manual
+       perldoc Catalyst::Manual::Intro
+       perldoc Catalyst::Helper::Model::DBIC::Schema
+       perldoc Catalyst::Model::DBIC::Schema
+       perldoc Catalyst::View::TT
+
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ man prove
+[?1049h[?1h=PROVE(1)               Perl Programmers Reference Guide               PROVE(1)
+
+[1mNAME[0m
+       prove - Run tests through a TAP harness.
+
+[1mUSAGE[0m
+        prove [options] [files or directories]
+
+[1mOPTIONS[0m
+       Boolean options:
+
+        -v,  --verbose     Print all test lines.
+        -l,  --lib         Add 'lib' to the path for your tests (-Ilib).
+        -b,  --blib        Add 'blib/lib' and 'blib/arch' to the path for your tests
+        -s,  --shuffle     Run the tests in random order.
+        -c,  --color       Colored test output (default).
+             --nocolor     Do not color test output.
+             --count       Show the X/Y test count when not verbose (default)
+             --nocount     Disable the X/Y test count.
+        -D   --dry         Dry run. Show test that would have run.
+             --ext         Set the extension for tests (default '.t')
+        -f,  --failures    Show failed tests.
+        -o,  --comments    Show comments.
+             --ignore-exit Ignore exit status from test scripts.
+        -m,  --merge       Merge test scripts' STDERR with their STDOUT.
+        -r,  --recurse     Recursively descend into directories.
+             --reverse     Run the tests in reverse order.
+        -q,  --quiet       Suppress some test output while running tests.
+        -Q,  --QUIET       Only print summary results.
+        -p,  --parse       Show full list of TAP parse errors, if any.
+             --directives  Only show results with TODO or SKIP directives.
+             --timer       Print elapsed time after each test.
+             --normalize   Normalize TAP output in verbose output
+        -T                 Enable tainting checks.
+        -t                 Enable tainting warnings.
+        -W                 Enable fatal warnings.
+        -w                 Enable warnings.
+        -h,  --help        Display this help
+        -?,                Display this help
+        -H,  --man         Longer manpage for prove
+             --norc        Don't process default .proverc
+:[K[K [KESCESC[K[[[K66[K~~[K
+       Options that take arguments:
+
+        -I                 Library paths to include.
+        -P                 Load plugin (searches App::Prove::Plugin::*.)
+        -M                 Load a module.
+        -e,  --exec        Interpreter to run the tests ('' for compiled tests.)
+             --harness     Define test harness to use.  See TAP::Harness.
+             --formatter   Result formatter to use. See TAP::Harness.
+        -a,  --archive     Store the resulting TAP in an archive file.
+        -j,  --jobs N      Run N test jobs in parallel (try 9.)
+             --state=opts  Control prove's persistent state.
+             --rc=rcfile   Process options from rcfile
+
+[1mNOTES[0m
+   [1m.proverc[0m
+       If [4m~/.proverc[24m or [4m./.proverc[24m exist they will be read and any options they contain processed before the
+       command line options. Options in [4m.proverc[24m are specified in the same way as command line options:
+
+           # .proverc
+           --state=hot,fast,save
+           -j9
+
+       Additional option files may be specified with the "--rc" option.  Default option file processing is
+       disabled by the "--norc" option.
+
+       Under Windows and VMS the option file is named [1m_[0m[4mproverc[24m rather than [4m.proverc[24m and is sought only in the
+       current directory.
+
+   [1mReading[0m [1mfrom[0m [1m"STDIN"[0m
+       If you have a list of tests (or URLs, or anything else you want to test) in a file, you can add them to
+       your tests by using a ’-’:
+
+        prove - < my_list_of_things_to_test.txt
+
+       See the "README" in the "examples" directory of this distribution.
+
+   [1mDefault[0m [1mTest[0m [1mDirectory[0m
+       If no files or directories are supplied, "prove" looks for all files matching the pattern "t/*.t".
+
+   [1mColored[0m [1mTest[0m [1mOutput[0m
+:[K[K [KESCESC[K[[[K55[K~~[K[HM             --norc        Don't process default .proverc
+[HM        -H,  --man         Longer manpage for prove
+[HM        -?,                Display this help
+[HM        -h,  --help        Display this help
+[HM        -w                 Enable warnings.
+[HM        -W                 Enable fatal warnings.
+[HM        -t                 Enable tainting warnings.
+[HM        -T                 Enable tainting checks.
+[HM             --normalize   Normalize TAP output in verbose output
+[HM             --timer       Print elapsed time after each test.
+[HM             --directives  Only show results with TODO or SKIP directives.
+[HM        -p,  --parse       Show full list of TAP parse errors, if any.
+[HM        -Q,  --QUIET       Only print summary results.
+[HM        -q,  --quiet       Suppress some test output while running tests.
+[HM             --reverse     Run the tests in reverse order.
+[HM        -r,  --recurse     Recursively descend into directories.
+[HM        -m,  --merge       Merge test scripts' STDERR with their STDOUT.
+[HM             --ignore-exit Ignore exit status from test scripts.
+[HM        -o,  --comments    Show comments.
+[HM        -f,  --failures    Show failed tests.
+[HM             --ext         Set the extension for tests (default '.t')
+[HM        -D   --dry         Dry run. Show test that would have run.
+[HM             --nocount     Disable the X/Y test count.
+[HM             --count       Show the X/Y test count when not verbose (default)
+[HM             --nocolor     Do not color test output.
+[HM        -c,  --color       Colored test output (default).
+[HM        -s,  --shuffle     Run the tests in random order.
+[HM        -b,  --blib        Add 'blib/lib' and 'blib/arch' to the path for your tests
+[HM        -l,  --lib         Add 'lib' to the path for your tests (-Ilib).
+[HM        -v,  --verbose     Print all test lines.
+[HM
+[HM       Boolean options:
+[HM[1mOPTIONS[0m
+[HM
+[HM        prove [options] [files or directories]
+[HM[1mUSAGE[0m
+[HM
+[HM       prove - Run tests through a TAP harness.
+[HM[1mNAME[0m
+[HM
+[HMPROVE(1)               Perl Programmers Reference Guide               PROVE(1)
+[42;1H[K:[K[K[?1l>[?1049l]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ man prove[Kprove -wl t
+t/01app.t ............... [warn] Unicode::Encoding plugin is auto-applied, please remove this from your appclass and make sure to define "encoding" config
+t/01app.t ............... 1/?                                t/01app.t ............... ok
+t/02pod.t ...............                                t/02pod.t ............... skipped: set TEST_POD to enable this test
+t/03podcoverage.t .......                                t/03podcoverage.t ....... skipped: set TEST_POD to enable this test
+t/controller_Login.t .... [warn] Unicode::Encoding plugin is auto-applied, please remove this from your appclass and make sure to define "encoding" config
+t/controller_Login.t .... 1/?                                t/controller_Login.t .... ok
+t/controller_Recipe.t ... [warn] Unicode::Encoding plugin is auto-applied, please remove this from your appclass and make sure to define "encoding" config
+[31mt/controller_Recipe.t ... 1/? [0m
+#   Failed test 'Request should succeed'
+#   at t/controller_Recipe.t line 9.
+# Looks like you failed 1 test of 1.
+[31m                               [0m[31mt/controller_Recipe.t ... [0m[31mDubious, test returned 1 (wstat 256, 0x100)[0m
+[31mFailed 1/1 subtests [0m
+t/controller_Recipes.t .. [warn] Unicode::Encoding plugin is auto-applied, please remove this from your appclass and make sure to define "encoding" config
+t/controller_Recipes.t .. 1/?                                t/controller_Recipes.t .. ok
+t/model_DB.t ............ t/model_DB.t ............ 1/?                                t/model_DB.t ............ ok
+t/view_HTML.t ........... t/view_HTML.t ........... 1/?                                t/view_HTML.t ........... ok
+
+Test Summary Report
+-------------------
+[31mt/controller_Recipe.t (Wstat: 256 Tests: 1 Failed: 1)[0m
+[31m  Failed test:  [0m[31m1[0m
+[31m  Non-zero exit status: 1[0m
+Files=8, Tests=6, 13 wallclock secs ( 0.05 usr  0.02 sys +  9.24 cusr  0.30 csys =  9.61 CPU)
+Result: FAIL
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ vim t.cont[K[K[K[K[K/controller_Recipe.t 
+[?1049h[?1h=[1;42r[34l[34h[?25h[23m[24m[0m[H[J[?25l[42;1H"t/controller_Recipe.t" 10L, 190C[1;1H[33muse strict[0m;
+[33muse warnings[0m;
+[33muse [0mTest::More;
+
+
+[33muse [0mCatalyst::Test [31m'Coolinar'[0m;
+[33muse [0mCoolinar::Controller::Recipe;
+
+ok( request([31m'/recipe'[0m)->is_success, [31m'Request should succeed'[0m );
+done_testing();
+[1m[34m~                                                                                                                             [12;1H~                                                                                                                             [13;1H~                                                                                                                             [14;1H~                                                                                                                             [15;1H~                                                                                                                             [16;1H~                                                                                                                             [17;1H~                                                                                                                             [18;1H~                                                                                                                             [19;1H~                                                                                                                             [20;1H~                                                                                                                             [21;1H~                                                                                                                             [22;1H~                                                                                                                             [23;1H~                                                                                                                             [24;1H~                                                                                                                             [25;1H~                                                                                                                             [26;1H~                                                                                                                             [27;1H~                                                                                                                             [28;1H~                                                                                                                             [29;1H~                                                                                                                             [30;1H~                                                                                                                             [31;1H~                                                                                                                             [32;1H~                                                                                                                             [33;1H~                                                                                                                             [34;1H~                                                                                                                             [35;1H~                                                                                                                             [36;1H~                                                                                                                             [37;1H~                                                                                                                             [38;1H~                                                                                                                             [39;1H~                                                                                                                             [40;1H~                                                                                                                             [41;1H~                                                                                                                             [0m[42;109H1,1[11CAll[1;1H[34h[?25h[?25l[42;1H[K[42;1H:[34h[?25hq[?25l[34h[?25h[?25l[42;1H[K[42;1H[?1l>[34h[?25h[?1049l]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ cd t
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar/t\[alex@pepelac1 t]$ ls -la
+total 40
+drwxrwxr-x. 2 alex alex 4096 Oct 15 21:20 [0m[01;34m.[0m
+drwxrwxr-x. 9 alex alex 4096 Oct 15 20:53 [01;34m..[0m
+-rw-rw-r--. 1 alex alex  170 Oct 10 12:56 01app.t
+-rw-rw-r--. 1 alex alex  236 Oct 10 12:56 02pod.t
+-rw-rw-r--. 1 alex alex  346 Oct 10 12:56 03podcoverage.t
+-rw-rw-r--. 1 alex alex  188 Oct 10 18:25 controller_Login.t
+-rw-rw-r--. 1 alex alex  192 Oct 10 18:24 controller_Recipes.t
+-rw-rw-r--. 1 alex alex  190 Oct 10 18:25 controller_Recipe.t
+-rw-rw-r--. 1 alex alex  100 Oct 11 15:51 model_DB.t
+-rw-rw-r--. 1 alex alex  101 Oct 11 14:07 view_HTML.t
+[m]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar/t\[alex@pepelac1 t]$ cd ..
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ vim t/view_HTML.t 
+[?1049h[?1h=[1;42r[34l[34h[?25h[23m[24m[0m[H[J[?25l[42;1H"t/view_HTML.t" 8L, 101C[1;1H[33muse strict[0m;
+[33muse warnings[0m;
+[33muse [0mTest::More;
+
+
+[35mBEGIN[0m { use_ok [31m'Coolinar::View::HTML'[0m }
+
+done_testing();
+[1m[34m~                                                                                                                             [10;1H~                                                                                                                             [11;1H~                                                                                                                             [12;1H~                                                                                                                             [13;1H~                                                                                                                             [14;1H~                                                                                                                             [15;1H~                                                                                                                             [16;1H~                                                                                                                             [17;1H~                                                                                                                             [18;1H~                                                                                                                             [19;1H~                                                                                                                             [20;1H~                                                                                                                             [21;1H~                                                                                                                             [22;1H~                                                                                                                             [23;1H~                                                                                                                             [24;1H~                                                                                                                             [25;1H~                                                                                                                             [26;1H~                                                                                                                             [27;1H~                                                                                                                             [28;1H~                                                                                                                             [29;1H~                                                                                                                             [30;1H~                                                                                                                             [31;1H~                                                                                                                             [32;1H~                                                                                                                             [33;1H~                                                                                                                             [34;1H~                                                                                                                             [35;1H~                                                                                                                             [36;1H~                                                                                                                             [37;1H~                                                                                                                             [38;1H~                                                                                                                             [39;1H~                                                                                                                             [40;1H~                                                                                                                             [41;1H~                                                                                                                             [0m[42;109H1,1[11CAll[1;1H[34h[?25h[?25l[42;109H2[2;1H[34h[?25h[?25l[42;109H3[3;1H[34h[?25h[?25l[42;109H4,0-1[4;1H[34h[?25h[?25l[42;109H5[5;1H[34h[?25h[?25l[42;109H6,1  [6;1H[34h[?25h[?25l[42;109H7,0-1[7;1H[34h[?25h[?25l[42;109H8,1  [8;1H[34h[?25h[?25l[42;109H7,0-1[7;1H[34h[?25h[?25l[42;109H6,1  [6;1H[34h[?25h[?25l[42;109H5,0-1[5;1H[34h[?25h[?25l[42;109H4[4;1H[34h[?25h[?25l[42;109H3,1  [3;1H[34h[?25h[?25l[42;109H2[2;1H[34h[?25h[?25l[42;109H1[1;1H[34h[?25h[?25l[42;1H[K[42;1H:[34h[?25hq[?25l[34h[?25h[?25l[42;1H[K[42;1H[?1l>[34h[?25h[?1049l]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ 5~[K[Kvim M
+Makefile     Makefile.PL  META.yml     MYMETA.json  MYMETA.yml   
+[alex@pepelac1 Coolinar]$ vim Makefile.PL 
+[?1049h[?1h=[1;42r[34l[34h[?25h[23m[24m[0m[H[J[?25l[42;1H"Makefile.PL" 27L, 994C[1;1H[35m#!/usr/bin/env perl[0m
+[34m# IMPORTANT: if you delete this file your app will not work as
+# expected.  You have been warned.[0m
+[33muse [0minc::Module::Install [31m1.02[0m;
+[33muse [0mModule::Install::Catalyst; [34m# Complain loudly if you don't have[0m[6;31H [34m# Catalyst::Devel installed or haven't said[0m[7;31H [34m# 'make dist' to create a standalone tarball.[0m
+
+name [31m'Coolinar'[0m;
+all_from [31m'lib/Coolinar.pm'[0m;
+
+requires [31m'Catalyst::Runtime'[0m => [31m'5.90042'[0m;
+requires [31m'Catalyst::Plugin::ConfigLoader'[0m;
+requires [31m'Catalyst::Plugin::Static::Simple'[0m;
+requires [31m'Catalyst::Plugin::StackTrace'[0m;
+requires [31m'Catalyst::Action::RenderView'[0m;
+requires [31m'HTML::FormHandler::Model::DBIC'[0m;
+requires [31m'Moose'[0m;
+requires [31m'namespace::autoclean'[0m;
+requires [31m'Config::General'[0m; [34m# This should reflect the config file format you've chosen[0m[21;17H [34m# See Catalyst::Plugin::ConfigLoader for supported formats[0m
+test_requires [31m'Test::More'[0m => [31m'0.88'[0m;
+catalyst;
+
+install_script [33mglob[0m([31m'script/*.pl'[0m);
+auto_install;
+WriteAll;
+[1m[34m~                                                                                                                             [29;1H~                                                                                                                             [30;1H~                                                                                                                             [31;1H~                                                                                                                             [32;1H~                                                                                                                             [33;1H~                                                                                                                             [34;1H~                                                                                                                             [35;1H~                                                                                                                             [36;1H~                                                                                                                             [37;1H~                                                                                                                             [38;1H~                                                                                                                             [39;1H~                                                                                                                             [40;1H~                                                                                                                             [41;1H~                                                                                                                             [0m[42;109H15,1[10CAll[15;1H[34h[?25h[?25l[42;110H6[16;1H[34h[?25h[?25l[42;1H[K[42;1H:[34h[?25hq[?25l[34h[?25h[?25l[42;1H[K[42;1H[?1l>[34h[?25h[?1049l]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ perldoc use
+No documentation found for "use".
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ perldoc use[C[C[C[K[K[Knamespace
+No documentation found for "namespace".
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ perldoc namespace[K[K[K[K[K[K[K[K[K[K pragmas
+No documentation found for "pragmas".
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ perldoc pragmas[K
+No documentation found for "pragma".
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ perldoc pragma[K[K[K[K[K[K[K perlpragma
+[?1049h[?1h=PERLPRAGMA(1)         User Contributed Perl Documentation        PERLPRAGMA(1)
+
+[1mNAME[0m
+       perlpragma - how to write a user pragma
+
+[1mDESCRIPTION[0m
+       A pragma is a module which influences some aspect of the compile time or run time behaviour of Perl, such as
+       "strict" or "warnings". With Perl 5.10 you are no longer limited to the built in pragmata; you can now create user
+       pragmata that modify the behaviour of user functions within a lexical scope.
+
+[1mA[0m [1mbasic[0m [1mexample[0m
+       For example, say you need to create a class implementing overloaded mathematical operators, and would like to
+       provide your own pragma that functions much like "use integer;" You’d like this code
+
+           use MyMaths;
+
+           my $l = MyMaths->new(1.2);
+           my $r = MyMaths->new(3.4);
+
+           print "A: ", $l + $r, "\n";
+
+           use myint;
+           print "B: ", $l + $r, "\n";
+
+           {
+               no myint;
+               print "C: ", $l + $r, "\n";
+           }
+
+           print "D: ", $l + $r, "\n";
+
+           no myint;
+           print "E: ", $l + $r, "\n";
+
+       to give the output
+
+           A: 4.6
+           B: 4
+           C: 4.6
+           D: 4
+           E: 4.6
+[3m/tmp/nX5pGgaQpY [23m[K[K [KESCESC[K[[[K66[K~~[K
+       [4mi.e.[24m, where "use myint;" is in effect, addition operations are forced to integer, whereas by default they are not,
+       with the default behaviour being restored via "no myint;"
+
+       The minimal implementation of the package "MyMaths" would be something like this:
+
+           package MyMaths;
+           use warnings;
+           use strict;
+           use myint();
+           use overload '+' => sub {
+               my ($l, $r) = @_;
+               # Pass 1 to check up one call level from here
+               if (myint::in_effect(1)) {
+                   int($$l) + int($$r);
+               } else {
+                   $$l + $$r;
+               }
+           };
+
+           sub new {
+               my ($class, $value) = @_;
+               bless \$value, $class;
+           }
+
+           1;
+
+       Note how we load the user pragma "myint" with an empty list "()" to prevent its "import" being called.
+
+       The interaction with the Perl compilation happens inside package "myint":
+
+           package myint;
+
+           use strict;
+           use warnings;
+
+           sub import {
+               $^H{myint} = 1;
+           }
+
+           sub unimport {
+:[K[K [KESCESC[K[[[K55[K~~[K[HM           E: 4.6
+[HM           D: 4
+[HM           C: 4.6
+[HM           B: 4
+[HM           A: 4.6
+[HM
+[HM       to give the output
+[HM
+[HM           print "E: ", $l + $r, "\n";
+[HM           no myint;
+[HM
+[HM           print "D: ", $l + $r, "\n";
+[HM
+[HM           }
+[HM               print "C: ", $l + $r, "\n";
+[HM               no myint;
+[HM           {
+[HM
+[HM           print "B: ", $l + $r, "\n";
+[HM           use myint;
+[HM
+[HM           print "A: ", $l + $r, "\n";
+[HM
+[HM           my $r = MyMaths->new(3.4);
+[HM           my $l = MyMaths->new(1.2);
+[HM
+[HM           use MyMaths;
+[HM
+[HM       provide your own pragma that functions much like "use integer;" You’d like this code
+[HM       For example, say you need to create a class implementing overloaded mathematical operators, and would like to
+[HM[1mA[0m [1mbasic[0m [1mexample[0m
+[HM
+[HM       pragmata that modify the behaviour of user functions within a lexical scope.
+[HM       "strict" or "warnings". With Perl 5.10 you are no longer limited to the built in pragmata; you can now create user
+[HM       A pragma is a module which influences some aspect of the compile time or run time behaviour of Perl, such as
+[HM[1mDESCRIPTION[0m
+[HM
+[HM       perlpragma - how to write a user pragma
+[HM[1mNAME[0m
+[HM
+[HMPERLPRAGMA(1)         User Contributed Perl Documentation        PERLPRAGMA(1)
+[42;1H[K:[K[K [KESCESC[K[[[K55[K~~[K[K:[K[K[?1l>[?1049l]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ perldoc perlpragma[K[K[K[K[K[Kuse
+No documentation found for "perluse".
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ perldoc perluse[K[K[K[K[K[K[K--help
+Unknown option: -
+Unknown option: e
+Unknown option: p
+perldoc [options] PageName|ModuleName|ProgramName...
+perldoc [options] -f BuiltinFunction
+perldoc [options] -q FAQRegex
+
+Options:
+    -h   Display this help message
+    -V   report version
+    -r   Recursive search (slow)
+    -i   Ignore case
+    -t   Display pod using pod2text instead of pod2man and nroff
+             (-t is the default on win32 unless -n is specified)
+    -u   Display unformatted pod text
+    -m   Display module's file in its entirety
+    -n   Specify replacement for nroff
+    -l   Display the module's file name
+    -F   Arguments are file names, not modules
+    -v   Verbosely describe what's going on
+    -T   Send output to STDOUT without any pager
+    -d output_filename_to_send_to
+    -o output_format_name
+    -M FormatterModuleNameToUse
+    -w formatter_option:option_value
+    -L translation_code   Choose doc translation (if any)
+    -X   use index if present (looks for pod.idx at /usr/lib/perl5)
+    -q   Search the text of questions (not answers) in perlfaq[1-9]
+
+PageName|ModuleName...
+         is the name of a piece of documentation that you want to look at. You
+         may either give a descriptive name of the page (as in the case of
+         `perlfunc') the name of a module, either like `Term::Info' or like
+         `Term/Info', or the name of a program, like `perldoc'.
+
+BuiltinFunction
+         is the name of a perl function.  Will extract documentation from
+         `perlfunc'.
+
+FAQRegex
+         is a regex. Will search perlfaq[1-9] for and extract any
+         questions that match.
+
+Any switches in the PERLDOC environment variable will be used before the
+command line arguments.  The optional pod index file contains a list of
+filenames, one per line.
+                                                       [Perldoc v3.14_04]
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ perl
+perl        perl5.10.1  perlbug     perldoc     perlivp     perlthanks  perltidy    
+[alex@pepelac1 Coolinar]$ perlf[K[K[K[K[Ksql
+sqlite3        sqlt           sqlt-diagram   sqlt-diff      sqlt-diff-old  sqlt-dumper    sqlt-graph     
+[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db 
+SQLite version 3.6.20
+Enter ".help" for instructions
+Enter SQL statements terminated with a ";"
+sqlite> select n[Kw[Kname [K, [K when_created from recipes
+   ...> ;
+Бутерброд (с белым хлебом)|now
+Чай|now
+Хот-Дог|now
+name_1|now
+name_2|now
+name_3|now
+name_4|now
+name_5|now
+name_7|now
+name_16|now
+name_18|now
+name_24|now
+name_25|now
+name_28|now
+name_29|now
+name_30|now
+name_31|now
+name_32|now
+name_34|now
+name_35|now
+name_36|now
+name_37|now
+name_38|now
+name_39|now
+name_40|now
+name_41|now
+name_42|now
+name_43|now
+name_44|now
+name_45|now
+name_46|now
+name_47|now
+name_48|now
+name_49|now
+name_50|now
+name_51|now
+name_52|now
+name_53|now
+name_54|now
+name_55|now
+name_56|now
+name_57|now
+name_58|now
+name_59|now
+name_60|now
+name_61|now
+name_62|now
+name_63|now
+name_64|now
+name_65|now
+name_66|now
+name_67|now
+name_68|now
+name_69|now
+name_70|now
+name_71|now
+name_72|now
+name_73|now
+name_74|now
+name_75|now
+name_76|now
+name_77|now
+name_78|now
+name_79|now
+name_80|now
+name_81|now
+name_82|now
+name_83|now
+name_84|now
+name_85|now
+name_86|now
+name_87|now
+name_88|now
+name_89|now
+name_92|now
+name_95|now
+name_96|now
+name_97|now
+name_98|now
+name_99|now
+name_100|now
+name_101|now
+name_102|now
+name_103|now
+name_104|now
+name_105|now
+name_106|now
+name_107|now
+name_108|now
+name_109|now
+name_110|now
+name_111|now
+name_112|now
+name_114|now
+name_117|now
+name_118|now
+name_119|now
+name_120|now
+name_121|now
+name_122|now
+новый рецепт|now
+новый рецепт|now
+sqlite> \[K.q
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ rm[K[Kvisqlite3 coolinar.db [6Pperldoc --helpsqlite3 coolinar.db 
+SQLite version 3.6.20
+Enter ".help" for instructions
+Enter SQL statements terminated with a ";"
+sqlite> .q[1P;select name, when_created from recipes;[C[1@,[C[1@ [1@w[1@h[1@e[1@n[1@_[1@u[1@p[1@d[1@a[1@t[1@e[1@d
+Бутерброд (с белым хлебом)|now|now
+Чай|now|now
+Хот-Дог|now|now
+name_1|now|now
+name_2|now|now
+name_3|now|now
+name_4|now|now
+name_5|now|now
+name_7|now|now
+name_16|now|now
+name_18|now|now
+name_24|now|now
+name_25|now|now
+name_28|now|now
+name_29|now|now
+name_30|now|now
+name_31|now|now
+name_32|now|now
+name_34|now|now
+name_35|now|now
+name_36|now|now
+name_37|now|now
+name_38|now|now
+name_39|now|now
+name_40|now|now
+name_41|now|now
+name_42|now|now
+name_43|now|now
+name_44|now|now
+name_45|now|now
+name_46|now|now
+name_47|now|now
+name_48|now|now
+name_49|now|now
+name_50|now|now
+name_51|now|now
+name_52|now|now
+name_53|now|now
+name_54|now|now
+name_55|now|now
+name_56|now|now
+name_57|now|now
+name_58|now|now
+name_59|now|now
+name_60|now|now
+name_61|now|now
+name_62|now|now
+name_63|now|now
+name_64|now|now
+name_65|now|now
+name_66|now|now
+name_67|now|now
+name_68|now|now
+name_69|now|now
+name_70|now|now
+name_71|now|now
+name_72|now|now
+name_73|now|now
+name_74|now|now
+name_75|now|now
+name_76|now|now
+name_77|now|now
+name_78|now|now
+name_79|now|now
+name_80|now|now
+name_81|now|now
+name_82|now|now
+name_83|now|now
+name_84|now|now
+name_85|now|now
+name_86|now|now
+name_87|now|now
+name_88|now|now
+name_89|now|now
+name_92|now|now
+name_95|now|now
+name_96|now|now
+name_97|now|now
+name_98|now|now
+name_99|now|now
+name_100|now|now
+name_101|now|now
+name_102|now|now
+name_103|now|now
+name_104|now|now
+name_105|now|now
+name_106|now|now
+name_107|now|now
+name_108|now|now
+name_109|now|now
+name_110|now|now
+name_111|now|now
+name_112|now|now
+name_114|now|now
+name_117|now|now
+name_118|now|now
+name_119|now|now
+name_120|now|now
+name_121|now|now
+name_122|now|now
+новый рецепт|now|now
+новый рецепт|now|now
+sqlite> select current_timestm[Kamp
+   ...> ;
+2013-10-16 10:29:33
+sqlite> ;select current_timestamp[1Pp[1Pp[1Pp[1Pp[1Pp[1Pp[1Pp[1Pp[1Pp[1Pp[1Pp[1Pp[1Pp[1Pp[1Pp[1Ppnpopwp(p)p[C[K;
+Error: no such function: now
+sqlite> select now();[1P;[1P;';'now';
+now
+sqlite> select 'now';[1P;[1P;[1P;[1P;[1P;n;o;w;
+Error: no such column: now
+sqlite> select now;'now';now();[C[C[C[C[C[C[C[C;[Kselect current_timestamp
+   ...> ;
+2013-10-16 10:29:51
+sqlite> .q
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ rm coolinar.db 
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar..d[K[Kdb < schema.def/
+coolinar.sql  fillit.sh     
+[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db < schema.def/coolinar.sql 
+Error: near line 20: duplicate column name: when_created
+Error: near line 46: no such table: users
+Error: near line 47: no such table: users
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db < schema.def/coolinar.sql 
+Error: near line 10: table recipes already exists
+Error: near line 29: table comments already exists
+Error: near line 41: table recipe_author already exists
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db < schema.def/coolinar.sql [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Crm coolinar.db [K
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ rm coolinar.db [31@sqlite3 coolinar.db < schema.def/coolinar.sql[C
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ ./script/coolinar_
+coolinar_cgi.pl      coolinar_create.pl   coolinar_fastcgi.pl  coolinar_server.pl   coolinar_test.pl
+[alex@pepelac1 Coolinar]$ ./script/coolinar_[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kschema.def/fillit.sh 
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ ./schema.def/fillit.sh [23@sqlite3 coolinar.db < schema.def/coolinar.sql[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Crm coolinar.db [K[31@sqlite3 coolinar.db < schema.def/coolinar.sql[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Crm coolinar.db [K[5@sqlite3[C[C[C[C[C[C[C[C[C[C[C[C[C[6Pperldoc --helpperlusepragma[4Pragmasnamespace[2Ppragmas[Kerlpragma[3Puse[1P--helpsqlite3 coolinar.db ""s"e"l"e"c"t" "w"h"e"n"_"c"r"e"a"t"e"d" "f"r"o"m" "a"[1P"r"e"c"i"p"e"s"
+2013-10-16 10:31:52
+2013-10-16 10:31:52
+2013-10-16 10:31:52
+2013-10-16 10:32:07
+2013-10-16 10:32:07
+2013-10-16 10:32:07
+2013-10-16 10:32:07
+2013-10-16 10:32:08
+2013-10-16 10:32:08
+2013-10-16 10:32:08
+2013-10-16 10:32:08
+2013-10-16 10:32:08
+2013-10-16 10:32:08
+2013-10-16 10:32:08
+2013-10-16 10:32:08
+2013-10-16 10:32:09
+2013-10-16 10:32:09
+2013-10-16 10:32:09
+2013-10-16 10:32:09
+2013-10-16 10:32:09
+2013-10-16 10:32:09
+2013-10-16 10:32:09
+2013-10-16 10:32:09
+2013-10-16 10:32:09
+2013-10-16 10:32:10
+2013-10-16 10:32:10
+2013-10-16 10:32:10
+2013-10-16 10:32:10
+2013-10-16 10:32:10
+2013-10-16 10:32:10
+2013-10-16 10:32:10
+2013-10-16 10:32:10
+2013-10-16 10:32:11
+2013-10-16 10:32:11
+2013-10-16 10:32:11
+2013-10-16 10:32:11
+2013-10-16 10:32:11
+2013-10-16 10:32:11
+2013-10-16 10:32:12
+2013-10-16 10:32:12
+2013-10-16 10:32:12
+2013-10-16 10:32:12
+2013-10-16 10:32:12
+2013-10-16 10:32:12
+2013-10-16 10:32:12
+2013-10-16 10:32:12
+2013-10-16 10:32:13
+2013-10-16 10:32:13
+2013-10-16 10:32:13
+2013-10-16 10:32:13
+2013-10-16 10:32:13
+2013-10-16 10:32:14
+2013-10-16 10:32:14
+2013-10-16 10:32:14
+2013-10-16 10:32:14
+2013-10-16 10:32:14
+2013-10-16 10:32:14
+2013-10-16 10:32:14
+2013-10-16 10:32:15
+2013-10-16 10:32:15
+2013-10-16 10:32:15
+2013-10-16 10:32:15
+2013-10-16 10:32:15
+2013-10-16 10:32:15
+2013-10-16 10:32:15
+2013-10-16 10:32:15
+2013-10-16 10:32:16
+2013-10-16 10:32:16
+2013-10-16 10:32:16
+2013-10-16 10:32:16
+2013-10-16 10:32:16
+2013-10-16 10:32:16
+2013-10-16 10:32:16
+2013-10-16 10:32:17
+2013-10-16 10:32:17
+2013-10-16 10:32:17
+2013-10-16 10:32:17
+2013-10-16 10:32:17
+2013-10-16 10:32:17
+2013-10-16 10:32:17
+2013-10-16 10:32:17
+2013-10-16 10:32:18
+2013-10-16 10:32:18
+2013-10-16 10:32:18
+2013-10-16 10:32:18
+2013-10-16 10:32:18
+2013-10-16 10:32:18
+2013-10-16 10:32:18
+2013-10-16 10:32:18
+2013-10-16 10:32:19
+2013-10-16 10:32:19
+2013-10-16 10:32:19
+2013-10-16 10:32:19
+2013-10-16 10:32:19
+2013-10-16 10:32:19
+2013-10-16 10:32:20
+2013-10-16 10:32:20
+2013-10-16 10:32:20
+2013-10-16 10:32:20
+2013-10-16 10:32:20
+2013-10-16 10:32:21
+2013-10-16 10:32:21
+2013-10-16 10:32:21
+2013-10-16 10:32:21
+2013-10-16 10:32:21
+2013-10-16 10:32:21
+2013-10-16 10:32:22
+2013-10-16 10:32:22
+2013-10-16 10:32:22
+2013-10-16 10:32:22
+2013-10-16 10:32:22
+2013-10-16 10:32:22
+2013-10-16 10:32:22
+2013-10-16 10:32:23
+2013-10-16 10:32:23
+2013-10-16 10:32:23
+2013-10-16 10:32:23
+2013-10-16 10:32:23
+2013-10-16 10:32:23
+2013-10-16 10:32:23
+2013-10-16 10:32:23
+2013-10-16 10:32:24
+2013-10-16 10:32:24
+2013-10-16 10:32:24
+2013-10-16 10:32:24
+2013-10-16 10:32:24
+2013-10-16 10:32:24
+2013-10-16 10:32:24
+2013-10-16 10:32:24
+2013-10-16 10:32:25
+2013-10-16 10:32:25
+2013-10-16 10:33:26
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db "select when_created from recipes"[1@n[1@a[1@m[1@e[1@,
+Бутерброд (с белым хлебом)|2013-10-16 10:31:52
+Чай|2013-10-16 10:31:52
+Хот-Дог|2013-10-16 10:31:52
+name_1|2013-10-16 10:32:07
+name_2|2013-10-16 10:32:07
+name_3|2013-10-16 10:32:07
+name_4|2013-10-16 10:32:07
+name_5|2013-10-16 10:32:08
+name_6|2013-10-16 10:32:08
+name_7|2013-10-16 10:32:08
+name_8|2013-10-16 10:32:08
+name_9|2013-10-16 10:32:08
+name_10|2013-10-16 10:32:08
+name_11|2013-10-16 10:32:08
+name_12|2013-10-16 10:32:08
+name_13|2013-10-16 10:32:09
+name_14|2013-10-16 10:32:09
+name_15|2013-10-16 10:32:09
+name_16|2013-10-16 10:32:09
+name_17|2013-10-16 10:32:09
+name_18|2013-10-16 10:32:09
+name_19|2013-10-16 10:32:09
+name_20|2013-10-16 10:32:09
+name_21|2013-10-16 10:32:09
+name_22|2013-10-16 10:32:10
+name_23|2013-10-16 10:32:10
+name_24|2013-10-16 10:32:10
+name_25|2013-10-16 10:32:10
+name_26|2013-10-16 10:32:10
+name_27|2013-10-16 10:32:10
+name_28|2013-10-16 10:32:10
+name_29|2013-10-16 10:32:10
+name_30|2013-10-16 10:32:11
+name_31|2013-10-16 10:32:11
+name_32|2013-10-16 10:32:11
+name_33|2013-10-16 10:32:11
+name_34|2013-10-16 10:32:11
+name_35|2013-10-16 10:32:11
+name_36|2013-10-16 10:32:12
+name_37|2013-10-16 10:32:12
+name_38|2013-10-16 10:32:12
+name_39|2013-10-16 10:32:12
+name_40|2013-10-16 10:32:12
+name_41|2013-10-16 10:32:12
+name_42|2013-10-16 10:32:12
+name_43|2013-10-16 10:32:12
+name_44|2013-10-16 10:32:13
+name_45|2013-10-16 10:32:13
+name_46|2013-10-16 10:32:13
+name_47|2013-10-16 10:32:13
+name_48|2013-10-16 10:32:13
+name_49|2013-10-16 10:32:14
+name_50|2013-10-16 10:32:14
+name_51|2013-10-16 10:32:14
+name_52|2013-10-16 10:32:14
+name_53|2013-10-16 10:32:14
+name_54|2013-10-16 10:32:14
+name_55|2013-10-16 10:32:14
+name_56|2013-10-16 10:32:15
+name_57|2013-10-16 10:32:15
+name_58|2013-10-16 10:32:15
+name_59|2013-10-16 10:32:15
+name_60|2013-10-16 10:32:15
+name_61|2013-10-16 10:32:15
+name_62|2013-10-16 10:32:15
+name_63|2013-10-16 10:32:15
+name_64|2013-10-16 10:32:16
+name_65|2013-10-16 10:32:16
+name_66|2013-10-16 10:32:16
+name_67|2013-10-16 10:32:16
+name_68|2013-10-16 10:32:16
+name_69|2013-10-16 10:32:16
+name_70|2013-10-16 10:32:16
+name_71|2013-10-16 10:32:17
+name_72|2013-10-16 10:32:17
+name_73|2013-10-16 10:32:17
+name_74|2013-10-16 10:32:17
+name_75|2013-10-16 10:32:17
+name_76|2013-10-16 10:32:17
+name_77|2013-10-16 10:32:17
+name_78|2013-10-16 10:32:17
+name_79|2013-10-16 10:32:18
+name_80|2013-10-16 10:32:18
+name_81|2013-10-16 10:32:18
+name_82|2013-10-16 10:32:18
+name_83|2013-10-16 10:32:18
+name_84|2013-10-16 10:32:18
+name_85|2013-10-16 10:32:18
+name_86|2013-10-16 10:32:18
+name_87|2013-10-16 10:32:19
+name_88|2013-10-16 10:32:19
+name_89|2013-10-16 10:32:19
+name_90|2013-10-16 10:32:19
+name_91|2013-10-16 10:32:19
+name_92|2013-10-16 10:32:19
+name_93|2013-10-16 10:32:20
+name_94|2013-10-16 10:32:20
+name_95|2013-10-16 10:32:20
+name_96|2013-10-16 10:32:20
+name_97|2013-10-16 10:32:20
+name_98|2013-10-16 10:32:21
+name_99|2013-10-16 10:32:21
+name_100|2013-10-16 10:32:21
+name_101|2013-10-16 10:32:21
+name_102|2013-10-16 10:32:21
+name_103|2013-10-16 10:32:21
+name_104|2013-10-16 10:32:22
+name_105|2013-10-16 10:32:22
+name_106|2013-10-16 10:32:22
+name_107|2013-10-16 10:32:22
+name_108|2013-10-16 10:32:22
+name_109|2013-10-16 10:32:22
+name_110|2013-10-16 10:32:22
+name_111|2013-10-16 10:32:23
+name_112|2013-10-16 10:32:23
+name_113|2013-10-16 10:32:23
+name_114|2013-10-16 10:32:23
+name_115|2013-10-16 10:32:23
+name_116|2013-10-16 10:32:23
+name_117|2013-10-16 10:32:23
+name_118|2013-10-16 10:32:23
+name_119|2013-10-16 10:32:24
+name_120|2013-10-16 10:32:24
+name_121|2013-10-16 10:32:24
+name_122|2013-10-16 10:32:24
+name_123|2013-10-16 10:32:24
+name_124|2013-10-16 10:32:24
+name_125|2013-10-16 10:32:24
+name_126|2013-10-16 10:32:24
+name_127|2013-10-16 10:32:25
+name_128|2013-10-16 10:32:25
+Что-то новое|2013-10-16 10:33:26
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db "select name,when_created from recipes" "o"r"d"e"r" "b"y" "w"h"e"n"_"c"r"e"a"t"e"d"
+Бутерброд (с белым хлебом)|2013-10-16 10:31:52
+Чай|2013-10-16 10:31:52
+Хот-Дог|2013-10-16 10:31:52
+name_1|2013-10-16 10:32:07
+name_2|2013-10-16 10:32:07
+name_3|2013-10-16 10:32:07
+name_4|2013-10-16 10:32:07
+name_5|2013-10-16 10:32:08
+name_6|2013-10-16 10:32:08
+name_7|2013-10-16 10:32:08
+name_8|2013-10-16 10:32:08
+name_9|2013-10-16 10:32:08
+name_10|2013-10-16 10:32:08
+name_11|2013-10-16 10:32:08
+name_12|2013-10-16 10:32:08
+name_13|2013-10-16 10:32:09
+name_14|2013-10-16 10:32:09
+name_15|2013-10-16 10:32:09
+name_16|2013-10-16 10:32:09
+name_17|2013-10-16 10:32:09
+name_18|2013-10-16 10:32:09
+name_19|2013-10-16 10:32:09
+name_20|2013-10-16 10:32:09
+name_21|2013-10-16 10:32:09
+name_22|2013-10-16 10:32:10
+name_23|2013-10-16 10:32:10
+name_24|2013-10-16 10:32:10
+name_25|2013-10-16 10:32:10
+name_26|2013-10-16 10:32:10
+name_27|2013-10-16 10:32:10
+name_28|2013-10-16 10:32:10
+name_29|2013-10-16 10:32:10
+name_30|2013-10-16 10:32:11
+name_31|2013-10-16 10:32:11
+name_32|2013-10-16 10:32:11
+name_33|2013-10-16 10:32:11
+name_34|2013-10-16 10:32:11
+name_35|2013-10-16 10:32:11
+name_36|2013-10-16 10:32:12
+name_37|2013-10-16 10:32:12
+name_38|2013-10-16 10:32:12
+name_39|2013-10-16 10:32:12
+name_40|2013-10-16 10:32:12
+name_41|2013-10-16 10:32:12
+name_42|2013-10-16 10:32:12
+name_43|2013-10-16 10:32:12
+name_44|2013-10-16 10:32:13
+name_45|2013-10-16 10:32:13
+name_46|2013-10-16 10:32:13
+name_47|2013-10-16 10:32:13
+name_48|2013-10-16 10:32:13
+name_49|2013-10-16 10:32:14
+name_50|2013-10-16 10:32:14
+name_51|2013-10-16 10:32:14
+name_52|2013-10-16 10:32:14
+name_53|2013-10-16 10:32:14
+name_54|2013-10-16 10:32:14
+name_55|2013-10-16 10:32:14
+name_56|2013-10-16 10:32:15
+name_57|2013-10-16 10:32:15
+name_58|2013-10-16 10:32:15
+name_59|2013-10-16 10:32:15
+name_60|2013-10-16 10:32:15
+name_61|2013-10-16 10:32:15
+name_62|2013-10-16 10:32:15
+name_63|2013-10-16 10:32:15
+name_64|2013-10-16 10:32:16
+name_65|2013-10-16 10:32:16
+name_66|2013-10-16 10:32:16
+name_67|2013-10-16 10:32:16
+name_68|2013-10-16 10:32:16
+name_69|2013-10-16 10:32:16
+name_70|2013-10-16 10:32:16
+name_71|2013-10-16 10:32:17
+name_72|2013-10-16 10:32:17
+name_73|2013-10-16 10:32:17
+name_74|2013-10-16 10:32:17
+name_75|2013-10-16 10:32:17
+name_76|2013-10-16 10:32:17
+name_77|2013-10-16 10:32:17
+name_78|2013-10-16 10:32:17
+name_79|2013-10-16 10:32:18
+name_80|2013-10-16 10:32:18
+name_81|2013-10-16 10:32:18
+name_82|2013-10-16 10:32:18
+name_83|2013-10-16 10:32:18
+name_84|2013-10-16 10:32:18
+name_85|2013-10-16 10:32:18
+name_86|2013-10-16 10:32:18
+name_87|2013-10-16 10:32:19
+name_88|2013-10-16 10:32:19
+name_89|2013-10-16 10:32:19
+name_90|2013-10-16 10:32:19
+name_91|2013-10-16 10:32:19
+name_92|2013-10-16 10:32:19
+name_93|2013-10-16 10:32:20
+name_94|2013-10-16 10:32:20
+name_95|2013-10-16 10:32:20
+name_96|2013-10-16 10:32:20
+name_97|2013-10-16 10:32:20
+name_98|2013-10-16 10:32:21
+name_99|2013-10-16 10:32:21
+name_100|2013-10-16 10:32:21
+name_101|2013-10-16 10:32:21
+name_102|2013-10-16 10:32:21
+name_103|2013-10-16 10:32:21
+name_104|2013-10-16 10:32:22
+name_105|2013-10-16 10:32:22
+name_106|2013-10-16 10:32:22
+name_107|2013-10-16 10:32:22
+name_108|2013-10-16 10:32:22
+name_109|2013-10-16 10:32:22
+name_110|2013-10-16 10:32:22
+name_111|2013-10-16 10:32:23
+name_112|2013-10-16 10:32:23
+name_113|2013-10-16 10:32:23
+name_114|2013-10-16 10:32:23
+name_115|2013-10-16 10:32:23
+name_116|2013-10-16 10:32:23
+name_117|2013-10-16 10:32:23
+name_118|2013-10-16 10:32:23
+name_119|2013-10-16 10:32:24
+name_120|2013-10-16 10:32:24
+name_121|2013-10-16 10:32:24
+name_122|2013-10-16 10:32:24
+name_123|2013-10-16 10:32:24
+name_124|2013-10-16 10:32:24
+name_125|2013-10-16 10:32:24
+name_126|2013-10-16 10:32:24
+name_127|2013-10-16 10:32:25
+name_128|2013-10-16 10:32:25
+Что-то новое|2013-10-16 10:33:26
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db "select name,when_created from recipes order by when_created" "a"s"c"
+Бутерброд (с белым хлебом)|2013-10-16 10:31:52
+Чай|2013-10-16 10:31:52
+Хот-Дог|2013-10-16 10:31:52
+name_1|2013-10-16 10:32:07
+name_2|2013-10-16 10:32:07
+name_3|2013-10-16 10:32:07
+name_4|2013-10-16 10:32:07
+name_5|2013-10-16 10:32:08
+name_6|2013-10-16 10:32:08
+name_7|2013-10-16 10:32:08
+name_8|2013-10-16 10:32:08
+name_9|2013-10-16 10:32:08
+name_10|2013-10-16 10:32:08
+name_11|2013-10-16 10:32:08
+name_12|2013-10-16 10:32:08
+name_13|2013-10-16 10:32:09
+name_14|2013-10-16 10:32:09
+name_15|2013-10-16 10:32:09
+name_16|2013-10-16 10:32:09
+name_17|2013-10-16 10:32:09
+name_18|2013-10-16 10:32:09
+name_19|2013-10-16 10:32:09
+name_20|2013-10-16 10:32:09
+name_21|2013-10-16 10:32:09
+name_22|2013-10-16 10:32:10
+name_23|2013-10-16 10:32:10
+name_24|2013-10-16 10:32:10
+name_25|2013-10-16 10:32:10
+name_26|2013-10-16 10:32:10
+name_27|2013-10-16 10:32:10
+name_28|2013-10-16 10:32:10
+name_29|2013-10-16 10:32:10
+name_30|2013-10-16 10:32:11
+name_31|2013-10-16 10:32:11
+name_32|2013-10-16 10:32:11
+name_33|2013-10-16 10:32:11
+name_34|2013-10-16 10:32:11
+name_35|2013-10-16 10:32:11
+name_36|2013-10-16 10:32:12
+name_37|2013-10-16 10:32:12
+name_38|2013-10-16 10:32:12
+name_39|2013-10-16 10:32:12
+name_40|2013-10-16 10:32:12
+name_41|2013-10-16 10:32:12
+name_42|2013-10-16 10:32:12
+name_43|2013-10-16 10:32:12
+name_44|2013-10-16 10:32:13
+name_45|2013-10-16 10:32:13
+name_46|2013-10-16 10:32:13
+name_47|2013-10-16 10:32:13
+name_48|2013-10-16 10:32:13
+name_49|2013-10-16 10:32:14
+name_50|2013-10-16 10:32:14
+name_51|2013-10-16 10:32:14
+name_52|2013-10-16 10:32:14
+name_53|2013-10-16 10:32:14
+name_54|2013-10-16 10:32:14
+name_55|2013-10-16 10:32:14
+name_56|2013-10-16 10:32:15
+name_57|2013-10-16 10:32:15
+name_58|2013-10-16 10:32:15
+name_59|2013-10-16 10:32:15
+name_60|2013-10-16 10:32:15
+name_61|2013-10-16 10:32:15
+name_62|2013-10-16 10:32:15
+name_63|2013-10-16 10:32:15
+name_64|2013-10-16 10:32:16
+name_65|2013-10-16 10:32:16
+name_66|2013-10-16 10:32:16
+name_67|2013-10-16 10:32:16
+name_68|2013-10-16 10:32:16
+name_69|2013-10-16 10:32:16
+name_70|2013-10-16 10:32:16
+name_71|2013-10-16 10:32:17
+name_72|2013-10-16 10:32:17
+name_73|2013-10-16 10:32:17
+name_74|2013-10-16 10:32:17
+name_75|2013-10-16 10:32:17
+name_76|2013-10-16 10:32:17
+name_77|2013-10-16 10:32:17
+name_78|2013-10-16 10:32:17
+name_79|2013-10-16 10:32:18
+name_80|2013-10-16 10:32:18
+name_81|2013-10-16 10:32:18
+name_82|2013-10-16 10:32:18
+name_83|2013-10-16 10:32:18
+name_84|2013-10-16 10:32:18
+name_85|2013-10-16 10:32:18
+name_86|2013-10-16 10:32:18
+name_87|2013-10-16 10:32:19
+name_88|2013-10-16 10:32:19
+name_89|2013-10-16 10:32:19
+name_90|2013-10-16 10:32:19
+name_91|2013-10-16 10:32:19
+name_92|2013-10-16 10:32:19
+name_93|2013-10-16 10:32:20
+name_94|2013-10-16 10:32:20
+name_95|2013-10-16 10:32:20
+name_96|2013-10-16 10:32:20
+name_97|2013-10-16 10:32:20
+name_98|2013-10-16 10:32:21
+name_99|2013-10-16 10:32:21
+name_100|2013-10-16 10:32:21
+name_101|2013-10-16 10:32:21
+name_102|2013-10-16 10:32:21
+name_103|2013-10-16 10:32:21
+name_104|2013-10-16 10:32:22
+name_105|2013-10-16 10:32:22
+name_106|2013-10-16 10:32:22
+name_107|2013-10-16 10:32:22
+name_108|2013-10-16 10:32:22
+name_109|2013-10-16 10:32:22
+name_110|2013-10-16 10:32:22
+name_111|2013-10-16 10:32:23
+name_112|2013-10-16 10:32:23
+name_113|2013-10-16 10:32:23
+name_114|2013-10-16 10:32:23
+name_115|2013-10-16 10:32:23
+name_116|2013-10-16 10:32:23
+name_117|2013-10-16 10:32:23
+name_118|2013-10-16 10:32:23
+name_119|2013-10-16 10:32:24
+name_120|2013-10-16 10:32:24
+name_121|2013-10-16 10:32:24
+name_122|2013-10-16 10:32:24
+name_123|2013-10-16 10:32:24
+name_124|2013-10-16 10:32:24
+name_125|2013-10-16 10:32:24
+name_126|2013-10-16 10:32:24
+name_127|2013-10-16 10:32:25
+name_128|2013-10-16 10:32:25
+Что-то новое|2013-10-16 10:33:26
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db "select name,when_created from recipes order by when_created asc"[1P"[1P"[1P"d"e"s"c"
+Что-то новое|2013-10-16 10:33:26
+name_127|2013-10-16 10:32:25
+name_128|2013-10-16 10:32:25
+name_119|2013-10-16 10:32:24
+name_120|2013-10-16 10:32:24
+name_121|2013-10-16 10:32:24
+name_122|2013-10-16 10:32:24
+name_123|2013-10-16 10:32:24
+name_124|2013-10-16 10:32:24
+name_125|2013-10-16 10:32:24
+name_126|2013-10-16 10:32:24
+name_111|2013-10-16 10:32:23
+name_112|2013-10-16 10:32:23
+name_113|2013-10-16 10:32:23
+name_114|2013-10-16 10:32:23
+name_115|2013-10-16 10:32:23
+name_116|2013-10-16 10:32:23
+name_117|2013-10-16 10:32:23
+name_118|2013-10-16 10:32:23
+name_104|2013-10-16 10:32:22
+name_105|2013-10-16 10:32:22
+name_106|2013-10-16 10:32:22
+name_107|2013-10-16 10:32:22
+name_108|2013-10-16 10:32:22
+name_109|2013-10-16 10:32:22
+name_110|2013-10-16 10:32:22
+name_98|2013-10-16 10:32:21
+name_99|2013-10-16 10:32:21
+name_100|2013-10-16 10:32:21
+name_101|2013-10-16 10:32:21
+name_102|2013-10-16 10:32:21
+name_103|2013-10-16 10:32:21
+name_93|2013-10-16 10:32:20
+name_94|2013-10-16 10:32:20
+name_95|2013-10-16 10:32:20
+name_96|2013-10-16 10:32:20
+name_97|2013-10-16 10:32:20
+name_87|2013-10-16 10:32:19
+name_88|2013-10-16 10:32:19
+name_89|2013-10-16 10:32:19
+name_90|2013-10-16 10:32:19
+name_91|2013-10-16 10:32:19
+name_92|2013-10-16 10:32:19
+name_79|2013-10-16 10:32:18
+name_80|2013-10-16 10:32:18
+name_81|2013-10-16 10:32:18
+name_82|2013-10-16 10:32:18
+name_83|2013-10-16 10:32:18
+name_84|2013-10-16 10:32:18
+name_85|2013-10-16 10:32:18
+name_86|2013-10-16 10:32:18
+name_71|2013-10-16 10:32:17
+name_72|2013-10-16 10:32:17
+name_73|2013-10-16 10:32:17
+name_74|2013-10-16 10:32:17
+name_75|2013-10-16 10:32:17
+name_76|2013-10-16 10:32:17
+name_77|2013-10-16 10:32:17
+name_78|2013-10-16 10:32:17
+name_64|2013-10-16 10:32:16
+name_65|2013-10-16 10:32:16
+name_66|2013-10-16 10:32:16
+name_67|2013-10-16 10:32:16
+name_68|2013-10-16 10:32:16
+name_69|2013-10-16 10:32:16
+name_70|2013-10-16 10:32:16
+name_56|2013-10-16 10:32:15
+name_57|2013-10-16 10:32:15
+name_58|2013-10-16 10:32:15
+name_59|2013-10-16 10:32:15
+name_60|2013-10-16 10:32:15
+name_61|2013-10-16 10:32:15
+name_62|2013-10-16 10:32:15
+name_63|2013-10-16 10:32:15
+name_49|2013-10-16 10:32:14
+name_50|2013-10-16 10:32:14
+name_51|2013-10-16 10:32:14
+name_52|2013-10-16 10:32:14
+name_53|2013-10-16 10:32:14
+name_54|2013-10-16 10:32:14
+name_55|2013-10-16 10:32:14
+name_44|2013-10-16 10:32:13
+name_45|2013-10-16 10:32:13
+name_46|2013-10-16 10:32:13
+name_47|2013-10-16 10:32:13
+name_48|2013-10-16 10:32:13
+name_36|2013-10-16 10:32:12
+name_37|2013-10-16 10:32:12
+name_38|2013-10-16 10:32:12
+name_39|2013-10-16 10:32:12
+name_40|2013-10-16 10:32:12
+name_41|2013-10-16 10:32:12
+name_42|2013-10-16 10:32:12
+name_43|2013-10-16 10:32:12
+name_30|2013-10-16 10:32:11
+name_31|2013-10-16 10:32:11
+name_32|2013-10-16 10:32:11
+name_33|2013-10-16 10:32:11
+name_34|2013-10-16 10:32:11
+name_35|2013-10-16 10:32:11
+name_22|2013-10-16 10:32:10
+name_23|2013-10-16 10:32:10
+name_24|2013-10-16 10:32:10
+name_25|2013-10-16 10:32:10
+name_26|2013-10-16 10:32:10
+name_27|2013-10-16 10:32:10
+name_28|2013-10-16 10:32:10
+name_29|2013-10-16 10:32:10
+name_13|2013-10-16 10:32:09
+name_14|2013-10-16 10:32:09
+name_15|2013-10-16 10:32:09
+name_16|2013-10-16 10:32:09
+name_17|2013-10-16 10:32:09
+name_18|2013-10-16 10:32:09
+name_19|2013-10-16 10:32:09
+name_20|2013-10-16 10:32:09
+name_21|2013-10-16 10:32:09
+name_5|2013-10-16 10:32:08
+name_6|2013-10-16 10:32:08
+name_7|2013-10-16 10:32:08
+name_8|2013-10-16 10:32:08
+name_9|2013-10-16 10:32:08
+name_10|2013-10-16 10:32:08
+name_11|2013-10-16 10:32:08
+name_12|2013-10-16 10:32:08
+name_1|2013-10-16 10:32:07
+name_2|2013-10-16 10:32:07
+name_3|2013-10-16 10:32:07
+name_4|2013-10-16 10:32:07
+Бутерброд (с белым хлебом)|2013-10-16 10:31:52
+Чай|2013-10-16 10:31:52
+Хот-Дог|2013-10-16 10:31:52
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db "select name,when_created from recipes order by when_created desc"[1Pasc""[K"[K[5P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[31P./schema.def/fillit.sh [23@sqlite3 coolinar.db < schema.def/coolinar.sql[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Crm coolinar.db [K[31@sqlite3 coolinar.db < schema.def/coolinar.sql[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Crm coolinar.db [K
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ rm coolinar.db sqlite3 coolinar.db "select name,when_created from recipes order by when_created desc"[1Pasc""[K"[K[5P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[31P./schema.def/fillit.sh [23@sqlite3 coolinar.db < schema.def/coolinar.sql[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Crm coolinar.db [K[31@sqlite3 coolinar.db < schema.def/coolinar.sql[C
+Error: near line 20: near ")": syntax error
+Error: near line 54: no such table: roles
+Error: near line 55: no such table: roles
+Error: near line 56: no such table: roles
+Error: near line 58: no such table: main.roles
+Error: near line 59: no such table: main.roles
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db < schema.def/coolinar.sql 
+Error: near line 10: table recipes already exists
+Error: near line 26: table users already exists
+Error: near line 37: table comments already exists
+Error: near line 49: table recipe_author already exists
+^C]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db < schema.def/coolinar.sql [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Crm coolinar.db [K
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ rm coolinar.db [31@sqlite3 coolinar.db < schema.def/coolinar.sql[C
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db < schema.def/coolinar.sql [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Crm coolinar.db [K[31@sqlite3 coolinar.db < schema.def/coolinar.sql[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Crm coolinar.db [Ksqlite3 coolinar.db "select name,when_created from recipes order by when_created desc"[1Pasc""[K"[K[5P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[31P./schema.def/fillit.sh 
+^Z
+[1]+  Stopped                 ./schema.def/fillit.sh
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ bg 1
+[1]+ ./schema.def/fillit.sh &
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ bg 1./schema.def/fillit.sh [23@sqlite3 coolinar.db < schema.def/coolinar.sql[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[23P./schema.def/fillit.sh[Cbg 1[K[K|[Khistory |grep model
+  323  ./configure --with-hpppddir=/usr/share/cups/model/HP --prefix=/usr --enable-qt4 --disable-libusb01_build --enable-doc-build --enable-cups-ppd-install --disable-foomatic-drv-install --disable-foomatic-ppd-install --disable-hpijs-install --disable-udev_sysfs_rules --disable-policykit --disable-cups-drv-install --enable-hpcups-install --enable-network-build --enable-dbus-build --enable-scan-build --enable-fax-build
+  324  ./configure --with-hpppddir=/usr/share/cups/model/HP --prefix=/usr --enable-qt4 --disable-libusb01_build --enable-doc-build --enable-cups-ppd-install --disable-foomatic-drv-install --disable-foomatic-ppd-install --disable-hpijs-install --disable-udev_sysfs_rules --disable-policykit --disable-cups-drv-install --enable-hpcups-install --enable-network-build --enable-dbus-build --enable-scan-build --enable-fax-build --disable-network-build
+  325  ./configure --with-hpppddir=/usr/share/cups/model/HP --prefix=/usr --enable-qt4 --disable-libusb01_build --enable-doc-build --enable-cups-ppd-install --disable-foomatic-drv-install --disable-foomatic-ppd-install --disable-hpijs-install --disable-udev_sysfs_rules --disable-policykit --disable-cups-drv-install --enable-hpcups-install --enable-network-build --enable-dbus-build --enable-scan-build --enable-fax-build --disable-network-build
+  326  ./configure --with-hpppddir=/usr/share/cups/model/HP --prefix=/usr --enable-qt4 --disable-libusb01_build --enable-doc-build --enable-cups-ppd-install --disable-foomatic-drv-install --disable-foomatic-ppd-install --disable-hpijs-install --disable-udev_sysfs_rules --disable-policykit --disable-cups-drv-install --enable-hpcups-install --enable-network-build --enable-dbus-build --enable-scan-build --enable-fax-build --disable-network-build
+  327  ./configure --with-hpppddir=/usr/share/cups/model/HP --prefix=/usr --enable-qt4 --disable-libusb01_build --enable-doc-build --enable-cups-ppd-install --disable-foomatic-drv-install --disable-foomatic-ppd-install --disable-hpijs-install --disable-udev_sysfs_rules --disable-policykit --disable-cups-drv-install --enable-hpcups-install --enable-network-build --enable-dbus-build --enable-scan-build --enable-fax-build --disable-network-build
+  328  ./configure --with-hpppddir=/usr/share/cups/model/HP --prefix=/usr --enable-qt4 --disable-libusb01_build --enable-doc-build --enable-cups-ppd-install --disable-foomatic-drv-install --disable-foomatic-ppd-install --disable-hpijs-install --disable-udev_sysfs_rules --disable-policykit --disable-cups-drv-install --enable-hpcups-install --enable-network-build --enable-dbus-build --enable-scan-build --enable-fax-build --disable-network-build
+  329  ./configure --with-hpppddir=/usr/share/cups/model/HP --prefix=/usr --enable-qt4 --disable-libusb01_build --enable-doc-build --enable-cups-ppd-install --disable-foomatic-drv-install --disable-foomatic-ppd-install --disable-hpijs-install --disable-udev_sysfs_rules --disable-policykit --disable-cups-drv-install --enable-hpcups-install --enable-network-build --enable-dbus-build --enable-scan-build --enable-fax-build --disable-network-build
+  899  script/coolinar_create.pl model DB DBIC::Schema Coolinar::Shema create=static dbi:SQLite:coolinar.db on_connect_do="PRAGMA foreign_keys = ON"
+ 1035  history |grep model
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ ./script/coolinar_create.pl model DB DBIC::Schema c[KCoolinar::Schema create=static \
+[1]+  Done                    ./schema.def/fillit.sh
+> components=timestamp dib:[K[K[Kbi:SQLite:coolinar.db on_connect_do [K=""P"R"A"G"M"A" "f"o"r"e"i"g"n"_"k"e"y"s" "[1P"="O"N"[C
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../lib/Coolinar/Model"
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../t"
+DBIx::Class::Schema::Loader::make_schema_at(): DBIx::Class::timestamp, as specified in the loader option "components", is not installed at /usr/local/share/perl5/Catalyst/Helper/Model/DBIC/Schema.pm line 636
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ ./script/coolinar_create.pl model DB DBIC::Schema Coolinar::Schema create=static components=timestampp dbi:SQLite:coolinar.db on_connect_do="PRAGMA foreign_keys=ON"M[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cimestamp [1PM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CTimestamp[1@ M[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[CM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ctamp [1PM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CStamp[1@ M[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../lib/Coolinar/Model"
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../t"
+Dumping manual schema for Coolinar::Schema to directory /home/alex/prj/study/perl/cat/Coolinar/script/../lib ...
+Schema dump completed.
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../lib/Coolinar/Model/DB.pm"
+created "/home/alex/prj/study/perl/cat/Coolinar/script/../lib/Coolinar/Model/DB.pm.new"
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../t/model_DB.t"
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ mc./script/coolinar_create.pl model DB DBIC::Schema Coolinar::Schema create=static components=TimeStampp dbi:SQLite:coolinar.db on_connect_do="PRAGMA foreign_keys=ON"[1@,[1@P[1@a[1@s[1@s[1@p[1@h[1@r[1@a[1@s[1@e[1@C[1@o[1@l[1@u[1@m[1@n
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../lib/Coolinar/Model"
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../t"
+DBIx::Class::Schema::Loader::make_schema_at(): DBIx::Class::PassphraseColumn, as specified in the loader option "components", is not installed at /usr/local/share/perl5/Catalyst/Helper/Model/DBIC/Schema.pm line 636
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+Use of uninitialized value in string ne at /usr/local/share/perl5/DBIx/Class/Schema/Loader/Base.pm line 2958.
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ ./script/coolinar_create.pl model DB DBIC::Schema Coolinar::Schema create=static components=TimeStampp,PassphraseColumn dbi:SQLite:coolinar.db on_connect_do="PRAGMA foreign_keys=ON"
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../lib/Coolinar/Model"
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../t"
+Dumping manual schema for Coolinar::Schema to directory /home/alex/prj/study/perl/cat/Coolinar/script/../lib ...
+Schema dump completed.
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../lib/Coolinar/Model/DB.pm"
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl rehash_pwds.pl [C[1@ [1@-[1@l[1@i[1@b[C[1@ 
+Can't locate Coolinar/Schema.pm in @INC (@INC contains: /usr/local/lib/perl5 /usr/local/share/perl5 /usr/lib/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib/perl5 /usr/share/perl5 .) at rehash_pwds.pl line 6.
+BEGIN failed--compilation aborted at rehash_pwds.pl line 6.
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl -lib  rehash_pwds.pl [C[1@l
+Can't locate Coolinar/Schema.pm in @INC (@INC contains: /usr/local/lib/perl5 /usr/local/share/perl5 /usr/lib/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib/perl5 /usr/share/perl5 .) at rehash_pwds.pl line 6.
+BEGIN failed--compilation aborted at rehash_pwds.pl line 6.
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ perl -h
+
+Usage: perl [switches] [--] [programfile] [arguments]
+  -0[octal]         specify record separator (\0, if no argument)
+  -a                autosplit mode with -n or -p (splits $_ into @F)
+  -C[number/list]   enables the listed Unicode features
+  -c                check syntax only (runs BEGIN and CHECK blocks)
+  -d[:debugger]     run program under debugger
+  -D[number/list]   set debugging flags (argument is a bit mask or alphabets)
+  -e program        one line of program (several -e's allowed, omit programfile)
+  -E program        like -e, but enables all optional features
+  -f                don't do $sitelib/sitecustomize.pl at startup
+  -F/pattern/       split() pattern for -a switch (//'s are optional)
+  -i[extension]     edit <> files in place (makes backup if extension supplied)
+  -Idirectory       specify @INC/#include directory (several -I's allowed)
+  -l[octal]         enable line ending processing, specifies line terminator
+  -[mM][-]module    execute "use/no module..." before executing program
+  -n                assume "while (<>) { ... }" loop around program
+  -p                assume loop like -n but print line also, like sed
+  -P                run program through C preprocessor before compilation
+  -s                enable rudimentary parsing for switches after programfile
+  -S                look for programfile using PATH environment variable
+  -t                enable tainting warnings
+  -T                enable tainting checks
+  -u                dump core after parsing program
+  -U                allow unsafe operations
+  -v                print version, subversion (includes VERY IMPORTANT perl info)
+  -V[:variable]     print configuration summary (or a single Config.pm variable)
+  -w                enable many useful warnings (RECOMMENDED)
+  -W                enable all warnings
+  -x[directory]     strip off text before #!perl line and perhaps cd to directory
+  -X                disable all warnings
+  
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ perl -hDBIC_TRACE=1 perl -llib  rehash_pwds.pl [1P[1@I
+Can't find source for Users at /usr/local/share/perl5/DBIx/Class/Schema.pm line 1080.
+	DBIx::Class::Schema::throw_exception(Coolinar::Schema=HASH(0x90426f8), "Can't find source for Users") called at /usr/local/share/perl5/DBIx/Class/Schema.pm line 598
+	DBIx::Class::Schema::source(Coolinar::Schema=HASH(0x90426f8), "Users") called at /usr/local/share/perl5/DBIx/Class/Schema.pm line 549
+	DBIx::Class::Schema::resultset(Coolinar::Schema=HASH(0x90426f8), "Users") called at rehash_pwds.pl line 10
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl -Ilib  rehash_pwds.pl 
+SELECT me.id, me.name, me.pass, me.r_id, me.when_created, me.when_updated FROM users me: 
+Can't locate object method "echo" via package "Coolinar::Schema::Result::User" at rehash_pwds.pl line 13.
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl -Ilib  rehash_pwds.pl 
+SELECT me.id, me.name, me.pass, me.r_id, me.when_created, me.when_updated FROM users me: 
+Coolinar::Schema::Result::User=HASH(0x9dab028)->passCoolinar::Schema::Result::User=HASH(0x9be9b10)->pass]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl -Ilib  rehash_pwds.pl 
+SELECT me.id, me.name, me.pass, me.r_id, me.when_created, me.when_updated FROM users me: 
+Coolinar::Schema::Result::User=HASH(0xaae0040)->pass
+Coolinar::Schema::Result::User=HASH(0xa91ead8)->pass
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl -Ilib  rehash_pwds.pl 
+SELECT me.id, me.name, me.pass, me.r_id, me.when_created, me.when_updated FROM users me: 
+bad RFC 2307 syntax in "guest" at /usr/local/share/perl5/DBIx/Class/InflateColumn/Authen/Passphrase.pm line 28.
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl -Ilib  rehash_pwds.pl 
+SELECT me.id, me.name, me.pass, me.r_id, me.when_created, me.when_updated FROM users me: 
+bad RFC 2307 syntax in "guest" at /usr/local/share/perl5/DBIx/Class/InflateColumn/Authen/Passphrase.pm line 28.
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl -Ilib  rehash_pwds.pl 
+SELECT me.id, me.name, me.pass, me.r_id, me.when_created, me.when_updated FROM users me: 
+bad RFC 2307 syntax in "guest" at /usr/local/share/perl5/DBIx/Class/InflateColumn/Authen/Passphrase.pm line 28.
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl -Ilib  rehash_pwds.pl 
+SELECT me.id, me.name, me.pass, me.r_id, me.when_created, me.when_updated FROM users me: 
+Coolinar::Schema::Result::User=HASH(0x97a7130)
+Coolinar::Schema::Result::User=HASH(0x969dce0)
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl -Ilib  rehash_pwds.pl 
+SELECT me.id, me.name, me.pass, me.r_id, me.when_created, me.when_updated FROM users me: 
+bad RFC 2307 syntax in "guest" at /usr/local/share/perl5/DBIx/Class/InflateColumn/Authen/Passphrase.pm line 28.
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db ""s"e"l"e"c"t" "n"a"m"e"," "p"a"s"s" "f"r"o"m" "u"s"e"r"s"
+guest|guest
+guest1|guest1
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ sqlite3 coolinar.db "select name, pass from users"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[10PDBIC_TRACE=1 perl -Ilib  rehash_pwds.pl 
+SELECT me.id, me.name, me.pass, me.r_id, me.when_created, me.when_updated FROM users me: 
+guest
+guest1
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ DBIC_TRACE=1 perl -Ilib  rehash_pwds.pl 
+SELECT me.id, me.name, me.pass, me.r_id, me.when_created, me.when_updated FROM users me: 
+UPDATE users SET pass = ? WHERE ( id = ? ): '{SSHA}liv7ogGbNMCFgL3srq1FPufVqasLnu+Cx2e82a4OV7KaSCoOWxnqfw==', '1'
+UPDATE users SET pass = ? WHERE ( id = ? ): '{SSHA}SNUSWrHUxmfHRjnRvz1rYOH5sol3UdjkCY8OOTL1rc6jxOeTDtbkcA==', '2'
+guestguest1]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ ls
+[0m[01;34mblib[0m     coolinar.conf  coolinar.psgi  [01;34mlib[0m       Makefile.PL  MYMETA.json  README          [01;34mroot[0m        [01;34mscript[0m  TODO
+Changes  coolinar.db    [01;34minc[0m            Makefile  META.yml     MYMETA.yml   rehash_pwds.pl  [01;34mschema.def[0m  [01;34mt[0m       typescript
+[m]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ tree
+bash: tree: command not found
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ ptre[K[K[K[Ktre[K[K[Kl
+Display all 160 possibilities? (y or n)
+[alex@pepelac1 Coolinar]$ l[K/[Kscript/coolinar_create.pl controller Image
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../lib/Coolinar/Controller"
+ exists "/home/alex/prj/study/perl/cat/Coolinar/script/../t"
+created "/home/alex/prj/study/perl/cat/Coolinar/script/../lib/Coolinar/Controller/Image.pm"
+created "/home/alex/prj/study/perl/cat/Coolinar/script/../t/controller_Image.t"
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ free
+             total       used       free     shared    buffers     cached
+Mem:       1029528     919472     110056          0      18656     264592
+-/+ buffers/cache:     636224     393304
+Swap:      2064376     193508    1870868
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ free-m
+bash: free-m: command not found
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ free-m -m
+             total       used       free     shared    buffers     cached
+Mem:          1005        900        104          0         18        260
+-/+ buffers/cache:        621        383
+Swap:         2015        188       1827
+]0;alex@pepelac1:~/prj/study/perl/cat/Coolinar\[alex@pepelac1 Coolinar]$ mem
+memcached       memcat          memdump         memflush        memrm           memstat         
+memcached-tool  memcp           memerror        memhog          memslap         
+[alex@pepelac1 Coolinar]$ memc
+memcached       memcached-tool  memcat          memcp           
+[alex@pepelac1 Coolinar]$ memca
+memcached       memcached-tool  memcat          
+[alex@pepelac1 Coolinar]$ memcached-tool 
+Usage: memcached-tool <host[:port]> [mode]
+
+       memcached-tool 10.0.0.5:11211 display    # shows slabs
+       memcached-tool 10.0.0.5:11211            # same.  (default is display)
+       memcached-tool 10.0.0.5

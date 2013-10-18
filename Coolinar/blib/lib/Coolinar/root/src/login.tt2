@@ -1,0 +1,32 @@
+[% title = "Зологинтесь" %]
+
+[% IF c.user_exists %]
+<div class="alert alert-info">
+  <strong>Опа!</strong>
+  А вы уже зарегистрировались в системе, но можете всегда 
+  <a href="[% c.uri_for('/logout') %]">покинуть</a> её
+</div>
+[% END %]
+
+[% IF error_msg %]
+<div class="alert alert-danger">
+[% error_msg %]
+</div>
+[% END %]
+
+<form class="form-inline" 
+      role="form"
+      action="[% c.uri_for('/login') %]"
+      method="post">
+<div class="form-group">
+  <label class="sr-only">Пользователь</label>
+  <input type="text" class="form-control" name="username" placeholder="Имя пользователя">
+</div>
+<div class="form-group">
+  <label class="sr-only">Пароль</label>
+  <input type="text" class="form-control" name="password" placeholder="Пароль">
+</div>
+<button type="submit" class="btn btn-default">Зайти</button>
+</form>
+<br>
+<small>Пара guest/guest должна прокатить</small>

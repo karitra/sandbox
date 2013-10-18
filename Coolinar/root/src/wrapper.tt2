@@ -1,0 +1,19 @@
+<!doctype html public "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+      <title>[% page.title || "Chookcha is a Coolinar!" %]</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Bootstrap -->
+      <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+      <link href="/assets/css/content.css"      rel="stylesheet" media="screen">
+    </head>
+    <body>
+[% IF no_wrapper; 
+'NO WRAP';
+     content;
+   ELSE;
+     wrapper = wrapper || 'full_wrp.tt2';
+     content WRAPPER $wrapper;
+   END; -%]
+    </body>
+</html>

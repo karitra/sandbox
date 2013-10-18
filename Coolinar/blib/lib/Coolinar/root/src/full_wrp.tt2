@@ -1,0 +1,21 @@
+
+      <div class="jumbotron">
+	<div class="container">
+
+	  <h1>Кулинарная книга</h1>
+	  <p>Небольшое и не претендующее на что-либо, но поучительное  демонстрационное приложение, для знакомства с возможностями
+	    <a href="http://getbootstrap.com">bootstrap</a> и 
+	    <a href="http://catalyst.org">catalyst</a>
+	  </p>
+
+	</div>
+      </div>
+
+      <div class="container">
+	[% content - %]
+	[% INCLUDE footer.tt2 %]
+      </div>
+      
+      <!-- Bootstrap delayed init -->
+      <script src="/assets/js/jquery.min.js"></script>
+      <script src="/assets/dist/js/bootstrap.min.js"></script>

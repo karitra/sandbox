@@ -1,0 +1,14 @@
+[% IF status_msg %]
+<div class="alert alert-success">
+  [% status_msg %]
+</div>
+[% END %]
+
+<p>
+  <a href="[% c.uri_for( c.controller.action_for('create'), [ page_num ] ) -%]" type="button" class="btn btn-default">
+    <span class="glyphicon glyphicon-plus"></span> Создать новую запись...</a>
+  <a type="button" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span> Помощь</a>
+  <a href="[% c.uri_for('/logout') %]" type="button" class="btn btn-default"><span class="glyphicon glyphicon-off"></span> Выход</a>
+
+  <small class="pull-right"> Всего записей <span class="label label-default">[% total_entries %]</span></small>
+</p>

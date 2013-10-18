@@ -1,0 +1,37 @@
+<div class="content-body">
+[% title    = "Создать/Редактировать" -%]
+[% subtitle = "запись о рецепте"      -%]
+
+
+[% FOR field IN form.error_fields; %]
+<div class="alert alert-danger">
+   [% FOR error IN field.errors; %]
+     <p>[%  error _ ': ' _ '"' _ field.label _ '"' %]</p>
+   [% END; %]
+</div>
+[% END; %]
+
+<!--      action="[% c.uri_for( c.controller.action_for('create', [ pg ]) ) %]" -->
+
+<form role="form-horizontal" 
+      name="[% form.name %]"
+      method="post">
+
+<div class="form-group">
+  [% f = form.field('name') -%]
+  <label for="[% f.name %]">[% f.label %]</label>
+  <input type="text" class="form-control" name="[% f.name %]" id="[% f.name %]" placeholder="Введите название" value="[% f.fif | html %]">
+</div>
+<div class="form-group">
+  [% f = form.field('desc') -%]
+  <label for="[% f.name %]">[% f.label %]</label>
+  <textarea class="form-control" rows="10" name="[% f.name %]" id="[% f.name %]" placeholder="Введите описние">[% f.fif | html %]</textarea>
+</div>
+  <button type="submit" name="submit" id="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
+
+<hr>
+
+<p>Вернуться к <a href="[% c.uri_for(c.controller.action_for('list'), [pg] ) -%]">списку</a> рецептов</p>
+</div>
